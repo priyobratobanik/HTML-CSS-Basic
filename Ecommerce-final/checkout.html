@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <style>
+        input{
+          margin-bottom: 20px;
+          font-size: large;
+          font-family: 'Courier New', Courier, monospace;
+          height: 30px;
+        }
+       #navbar {
+        display: flex;
+        justify-content: space-around;
+        background-color: teal;
+        padding: 10px;
+      }
+
+      a {
+        text-decoration: none;
+      }
+      #navbar a:hover {
+        color: white;
+      }
+      #navbar a {
+        cursor: pointer;
+      }
+      h1,form{
+      margin-left:500px ;
+      color:black;
+      }
+      #subbtn{
+        background-color: brown;
+        border-radius: 5px;
+        color: aliceblue;
+      }
+      #btn{
+        
+        border-radius: 5px;
+        color: aliceblue;
+      }
+      </style>
+</head>
+<body>
+  <h1>Checkout page</h1>
+      <form>
+        
+        <input id="curdno" type="text" placeholder="Enter card number" />
+        <br>
+        <input id="cvv" type="password" placeholder="Enter cvv number" />
+        <br>
+        <input id="dt" type="date" placeholder="Enter Expiry Date" />
+        <br>
+       
+        <br>
+        
+        <input id="subbtn"type="submit" />
+
+        <button id="btn"><a href="otp.html" >Verify otp</a></button>
+      </form>
+</body>
+</html>
+
+<script>
+      document.querySelector("form").addEventListener("submit",checkFunction);
+      var checkData=JSON.parse(localStorage.getItem("finaldata"))||[];
+      console.log(checkData);
+      function checkFunction(){
+        event.preventDefault();
+        var cardnumber=document.querySelector("#curdno").value;
+        var cvvnumber=document.querySelector("#cvv").value;
+        var dt=document.querySelector("#dt").value;
+        var otpnumber=document.querySelector("#otp").value;
+
+        checkObj={
+          card:cardnumber,
+          cvv:cvvnumber,
+          date:dt,
+          otp:otpnumber,
+        };
+        checkData.push(checkObj);
+        localStorage.setItem("finaldata",JSON.stringify(checkData));
+      };
+</script>
